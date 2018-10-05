@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "793974404916",
+    "firebase_url": "https://ibmsentiment.firebaseio.com",
+    "project_id": "ibmsentiment",
+    "storage_bucket": "ibmsentiment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793974404916:android:35e9c593c1e5ce05",
+        "android_client_info": {
+          "package_name": "sentiment.ibm_hack_slash.app.ibm_sentiment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793974404916-76qk2h18f8cs06af08emou9lt4llojmo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sentiment.ibm_hack_slash.app.ibm_sentiment",
+            "certificate_hash": "9b1d3135f566b0c1ae8b7eb83bcc6fe00d7f76f6"
+          }
+        },
+        {
+          "client_id": "793974404916-9obe83b8au643stasu4upcqvac0v2q0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwjPAfnDUTqDsGeawxKw7_3JyoYw8BqGE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793974404916-9obe83b8au643stasu4upcqvac0v2q0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,6 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">IBM-Sentiment</string>
+    <string name="Consumer_Key">1S7vQgNdGf45V9fMsxSec9VIt</string>
+    <string name="Consumer_Secret">TUq7LaNCiDKyxT3SG8XwlK8yVUsqRgUcsdZyXKu3UH7YFegw5i </string>
+</resources>
+
