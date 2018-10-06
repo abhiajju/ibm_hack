@@ -1,5 +1,7 @@
 from __future__ import print_function
 from flask import Flask, redirect, url_for,request, render_template
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 import tweepy,json,sys,spotipy
 from watson_developer_cloud import ToneAnalyzerV3
 from watson_developer_cloud import WatsonApiException
@@ -9,31 +11,30 @@ from flask_sqlalchemy import SQLAlchemy
 from sql import db
 from sql import songs
 
+
 app = Flask(__name__,static_url_path='')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:path_to_sqlite_db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///students.sqlite3'
 app.config['SECRET_KEY'] = "random string"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
 
 def main():
-   db.init_app(app)
-   app.run(port=5000)
+   app.run(port=5000, debug=True)
 
-'''admin = Admin(app)
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Post, db.session))'''
 
 def twitter_auth():
-    consumer_key = "your_consumer_key"
-    consumer_secret = "your_consumer_secret"
-    access_token = "your_access_token"
-    access_token_secret =  "your_access_token_secret"
+    consumer_key = "1S7vQgNdGf45V9fMsxSec9VIt"
+    consumer_secret = "TUq7LaNCiDKyxT3SG8XwlK8yVUsqRgUcsdZyXKu3UH7YFegw5i"
+    access_token = "832861425127264256-kNarHNi1CbEGOl0erBnRMyD6JCo9hAS"
+    access_token_secret =  "IgR1kWZ7DAip5Ng15E6uccxjdqWzpXSSoEHLhGkJ7Rm6v"
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     return auth
     
 def spotify_auth():
-    cid ='your_spotify_cid' 
-    secret = 'your_spotify_secret'  
+    cid ='f104e67ab36a44178a4a91deb29b1cc6' 
+    secret = 'f7f41d5761f84f43b9418a7ae2c741e5' 
+    #username = 'x0c6166fhofk75xtxqgwybr6h' 
     client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret) 
     return client_credentials_manager
 
@@ -49,9 +50,9 @@ sng_lst = []
 hlst = []
 
 tone_analyzer = ToneAnalyzerV3(
-    version='ibm_watson_version',
-    username='your_ibm_watson_username',
-    password='your_ibm_watson_password',
+    version='2017-09-21',
+    username='917a50c9-24be-44ee-842c-c71f983ee077',
+    password='xWKXSjpEmmcF',
     url='https://gateway.watsonplatform.net/tone-analyzer/api'
 )
 
@@ -69,6 +70,8 @@ def tone_analyze(text):
 
 def fetch_tweet(user_handle):
 	return api.user_timeline(screen_name = user_handle, count = nmbr) 
+
+
 
 def analyzer(tweet):
     tone = tone_analyze(tweet)
@@ -88,7 +91,7 @@ def analyzer(tweet):
     return lst
 
 def spotify_srch(lst):
-    abd = sp.recommendations(seed_genres=lst,limit=10, country='US',min_popularity=50)
+    abd = sp.recommendations(seed_genres=lst,limit=8, country='US',min_popularity=50)
     if(len(abd['tracks'])):
         for sngs in abd['tracks']:
             sng_lst.append(sngs['album']['name'])
@@ -99,21 +102,20 @@ def index():
    return render_template('index.html')
 
 
-
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
+    del tweet_sentiment [:]
+    del hlst [:]
+    del sng_lst [:]
     if request.method == 'POST':
         user = request.form['handle']
-        print (user)
-        print ('\n')
         hindi = {}
         usernm = api.get_user(user).name
-        #print (usernm)
         public_tweets = fetch_tweet(user)
         if(len(public_tweets)>0):
             strn = " "
             for tweet in public_tweets:
-                strn = strn + tweet.text + '\n'
+                strn = strn + tweet.text + "\n"
             tweet_sentiment.append(strn)
             lst = analyzer(strn)
             if(len(lst)):

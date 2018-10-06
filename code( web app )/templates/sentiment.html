@@ -9,21 +9,21 @@
    <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='geoloc.css') }}">
 </head>
 <body>
-   <h1> Hello {{ name }} !! </h1>
-   <br>
-   <br>
    <div class = "container">
-   {% if result|length==0 %}
-      <p id="tones"> No tweets </p>
-   {% else %}
-      <p id="text"> {{ text }} </p>
-      {% for tones in result %}
-         <p id="tones"> {{tones}} </p>  
-      {% endfor %}
-   {% endif %}
-   </div>
-   <br>
-   <div class="container">
+      <div class="uname text-center">
+         <h1> Hello {{ name }} !! </h1>
+      </div>
+      {% if result|length==0 %}
+         <p class="tones"> No tweets </p>
+      {% else %}
+         <div class="jumbotron">
+            <h5 > Your tweets!</h5>
+            <hr class="my-4">
+            {% for tones in result %}
+               <p class="tones"> {{tones}} </p>  
+            {% endfor %}
+         </div>
+      {% endif %}
       <p class="recommendation"> Here is a list of songs recommended for you !!</p>
       <div class="row">
          <div class="col-sm-6">
@@ -51,9 +51,12 @@
             {% endfor %}
          </div>
       </div>
+      <div class="uname text-center">
+         <a href="#" id="get_location">Click to know about doctors nearby</a>
+      </div>
+      
    </div>
    <br>
-   <a href="#" id="get_location">Please click  to know about doctors nearby</a>
    <div id="map">
    </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
