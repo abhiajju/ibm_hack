@@ -2,7 +2,7 @@ console.log('ayyeh ');
 var map,infowindow,request,service;
 var markers=[];
 function initialize(lat, lng) {
-    console.log("i am in");
+    //console.log("i am in");
     var center = new google.maps.LatLng(lat,lng);
     map=new google.maps.Map(document.getElementById('map'),{
         center:center,
@@ -61,11 +61,11 @@ function showp(pos){
 
 document.getElementById('get_location').onclick=function(){
     if (navigator.geolocation) {
-        console.log("show up");
+        //console.log("show up");
         navigator.geolocation.getCurrentPosition(showp);
     } else {
         document.getElementById('map').innerHTML = "Geolocation is not supported by this browser.";
-        console.log("didnt show up");
+        //console.log("didnt show up");
         return false;
     }
 }

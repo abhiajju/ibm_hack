@@ -23,17 +23,17 @@ def main():
 
 
 def twitter_auth():
-    consumer_key = "1S7vQgNdGf45V9fMsxSec9VIt"
-    consumer_secret = "TUq7LaNCiDKyxT3SG8XwlK8yVUsqRgUcsdZyXKu3UH7YFegw5i"
-    access_token = "832861425127264256-kNarHNi1CbEGOl0erBnRMyD6JCo9hAS"
-    access_token_secret =  "IgR1kWZ7DAip5Ng15E6uccxjdqWzpXSSoEHLhGkJ7Rm6v"
+    consumer_key = "your_consumer_key"
+    consumer_secret = "your_consumer_secret"
+    access_token = "your_access_token"
+    access_token_secret =  "your_access_token_secret"
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     return auth
     
 def spotify_auth():
-    cid ='f104e67ab36a44178a4a91deb29b1cc6' 
-    secret = 'f7f41d5761f84f43b9418a7ae2c741e5' 
+    cid ='your_consumer_id' 
+    secret = 'your_consumer_secret' 
     #username = 'x0c6166fhofk75xtxqgwybr6h' 
     client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret) 
     return client_credentials_manager
@@ -50,9 +50,9 @@ sng_lst = []
 hlst = []
 
 tone_analyzer = ToneAnalyzerV3(
-    version='2017-09-21',
-    username='917a50c9-24be-44ee-842c-c71f983ee077',
-    password='xWKXSjpEmmcF',
+    version='your_version',
+    username='your_watson_tone_analyzer_username',
+    password='your_password',
     url='https://gateway.watsonplatform.net/tone-analyzer/api'
 )
 
